@@ -3,7 +3,7 @@
 | Type | Name | Description | Status |
 |--- |--- |--- |--- |
 | Lib | lib-common-exception | Handles all exceptions for the services it imports | Finished |
-| Service | Microservice-gateway | Service that forwards incoming requests to the approproate destination | TODO |
+| Service | Microservice-gateway | Service that forwards incoming requests to the appropriate destination | TODO |
 | Service | Microservice-user|  Service to manage users | Finished |
 | Service | Microservice-course | Service to manage courses | TODO |
 
