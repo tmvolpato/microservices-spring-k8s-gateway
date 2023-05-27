@@ -9,7 +9,7 @@
 
 <br/>
 
-## Technology used in microservice
+## Technologies used in microservices
 
 | Tecnology | Version | Site |
 |--- |--- |--- |
