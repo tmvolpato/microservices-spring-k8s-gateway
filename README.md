@@ -9,7 +9,7 @@
 
 <br/>
 
-# Technology used in microservice
+## Technology used in microservice
 
 | Tecnology | Version | Site |
 |--- |--- |--- |
@@ -29,7 +29,7 @@
 
 <br/>
 
-# Install + start minikube
+## Install + start minikube
 
 ### Install minikube [https://minikube.sigs.k8s.io/docs/start/](https://minikube.sigs.k8s.io/docs/start/)
 <br/>
@@ -45,7 +45,7 @@ Stop minikube
 
 <br/>
 
-# Kubernetes - commands
+## Kubernetes - commands
 
 Apply configuration file (deployment.yaml, service.yaml, secret.yaml, etc)
 > $ kubectl apply -f deployment-name.yaml
@@ -76,11 +76,11 @@ Interactive pod - postgreSQL
 
 <br/>
 
-# Create account Docker Hub
+## Create account Docker Hub
 [https://hub.docker.com/](https://hub.docker.com/)
 <br/>
 
-# Google Container Tools jib - commands
+## Google Container Tools jib - commands
 
 Create package .jar
 > $ mvn clean install
@@ -89,11 +89,11 @@ Send image to docker hub (configured in pom.xml)
 > $ mvn compile jib:build
 
 <br/><br/>
-# Start project local
+## Start project local
 to-do
 
-# Start project with k8s
+## Start project with k8s
 to-do
 
-# Postman collections
+## Postman collections
 to-do
