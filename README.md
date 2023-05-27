@@ -8,7 +8,7 @@
 <br/>
 
 ##### Type: Service
-##### Name: Microservice-gatewat
+##### Name: Microservice-gateway
 ##### Description: Service that forwards incoming requests to the approproate destination
 
 <br/>
