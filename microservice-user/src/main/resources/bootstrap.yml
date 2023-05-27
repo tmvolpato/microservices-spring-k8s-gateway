@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: microservice-user
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: ${ENV_MS_USER_SPRING_CLOUD_KUBERNETES_LOAD_BALANCER_RIBBON_ENABLED:false}
+    kubernetes:
+      config:
+        enabled: ${ENV_MS_USER_SPRING_CLOUD_KUBERNETES_ENABLED:false}
+      enabled: ${ENV_MS_USER_SPRING_CLOUD_KUBERNETES_ENABLED:false}
+      loadBalancer:
+        enabled: ${ENV_MS_USER_SPRING_CLOUD_KUBERNETES_LOAD_BALANCER_ENABLED:false}
+      secrets:
+        enableApi: ${ENV_MS_USER_SPRING_CLOUD_KUBERNETES_SECRETS_ENABLED_API:false}
+      discovery:
+        enabled: ${ENV_MS_USER_SPRING_CLOUD_KUBERNETES_DISCOVERY_ENABLED:false}
+        all-namespaces: ${ENV_MS_USER_SPRING_CLOUD_KUBERNETES_DISCOVERY_ALL_NAMESPACE:false}
+
+server:
+  forward-headers-strategy: ${ENV_MS_USER_SERVER_FORWARD_HEADERS_STRATEGY:framework}
+  servlet:
+    context-path: /
+  port: ${ENV_MS_USER_SERVER_PORT:8001}
+

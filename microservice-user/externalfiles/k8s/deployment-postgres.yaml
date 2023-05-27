@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres13-user-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: postgres
+  template:
+    metadata:
+      labels:
+        role: postgres
+    spec:
+      containers:
+        - name: postgres13
+          image: postgres:13-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          env:
+            - name: ENV_MS_USER_DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: microservice-user-configmap
+                  key: ENV_MS_USER_DB_DATABASE
+            - name: ENV_MS_USER_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: microservice-user-secret
+                  key: ENV_MS_USER_DB_USERNAME
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: microservice-user-secret
+                  key: ENV_MS_USER_DB_PASSWORD
+          volumeMounts:
+            - name: data-postgres-user
+              mountPath: /var/lib/postresql/data
+      volumes:
+        - name: data-postgres-user
+          persistentVolumeClaim:
+            claimName: postgres-user-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres13-user-service
+spec:
+  ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    role: postgres
+  type: ClusterIP

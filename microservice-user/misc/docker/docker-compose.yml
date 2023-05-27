@@ -1,0 +1,41 @@
+version: "3"
+services:
+  database-user:
+    image: postgres:13-alpine
+    container_name: database-microservice-user
+    volumes:
+      - pgdata-user:/var/lib/postresql/data/
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123#dev
+      - POSTGRES_DB=postgres
+    restart: always
+    networks:
+      - microservices-network
+  microservice-user:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+#    image: tmvolpato/microservice-user
+    container_name: microservice-user
+    ports:
+      - '8001:8001'
+    env_file:
+      - ../../.env
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    networks:
+      - microservices-network
+    depends_on:
+      - database-user
+    restart: always
+
+volumes:
+  pgdata-user:
+    driver: local
+
+networks:
+  microservices-network:
+    driver: bridge

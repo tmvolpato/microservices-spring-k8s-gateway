@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-user-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice-user
+  template:
+    metadata:
+      labels:
+        app: microservice-user
+    spec:
+      containers:
+        - name: microservice-user
+          image: tmvolpato/microservice-user:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8001
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: microservice-user-configmap
+          env:
+            - name: ENV_MS_USER_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: microservice-user-secret
+                  key: ENV_MS_USER_DB_USERNAME
+            - name: ENV_MS_USER_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: microservice-user-secret
+                  key: ENV_MS_USER_DB_PASSWORD
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8001
+            initialDelaySeconds: 20
+            periodSeconds: 25
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8001
+            initialDelaySeconds: 20
+            periodSeconds: 25
+#         resources:
+#           requests:
+#             cpu: "500m"
+#             memory: "512Mi"
+#           limits:
+#             cpu: "500m"
+#             memory: "600Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-user-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8001
+      protocol: TCP
+      targetPort: 8001
+  selector:
+    app: microservice-user

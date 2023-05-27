@@ -1,0 +1,74 @@
+spring:
+  hateos:
+    use-hal-as-default-json-media-type: ${ENV_MS_USER_HATEOAS_USE_HAL:false}
+  jackson:
+    default-property-inclusion: ${ENV_DEFAULT_PROPERTY_INCLUSION:NON-ABSENT}
+  profiles:
+    active:
+      - dev
+  datasource:
+    username: ${ENV_MS_USER_DB_USERNAME:postgres}
+    password: ${ENV_MS_USER_DB_PASSWORD:123#dev}
+    driver-class-name: ${ENV_MS_USER_DB_DRIVER_CLASS_NAME:org.postgresql.Driver}
+    url: jdbc:postgresql://${ENV_MS_USER_DB_HOST:localhost:5432}/${ENV_MS_USER_DB_DATABASE:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: ${ENV_MS_USER_DB_DDL_AUTO:validate}
+    show-sql: ${ENV_MS_USER_DB_SHOW_SQL:true}
+    database-platform: ${ENV_MS_USER_DB_DATABASE_PLATFORM:org.hibernate.dialect.PostgreSQLDialect}
+    open-in-view: ${ENV_MS_USER_DB_OPEN_IN_VIEW:false}
+    generate-ddl: ${ENV_MS_USER_DB_GENERATE_DLL:true}
+    properties:
+      hibernate.format_sql: ${ENV_MS_USER_FORMAT_SQL:true}
+
+---
+spring:
+  flyway:
+    enabled: true
+    group: true
+    sql-migration-prefix: V
+    sql-migration-separator: __
+    sql-migration-suffixes: .sql
+    schemas: public
+    locations: classpath:db/migration
+
+server:
+  forward-headers-strategy: ${ENV_MS_USER_SERVER_FORWARD_HEADERS_STRATEGY:framework}
+  servlet:
+    context-path: /
+  port: ${ENV_MS_USER_SERVER_PORT:8001}
+
+logging:
+  pattern:
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
+  level:
+    org:
+      springframework:
+        web: INFO
+      hibernate: ERROR
+    br:
+      com:
+        tmvolpato:
+          ms: DEBUG
+
+springdoc:
+  api-docs:
+    path: ${ENV_MS_USER_SPRING_API_DOCS_PATH:/docs/v3/api-docs}
+  swagger-ui:
+    path: ${ENV_MS_USER_SPRING_API_DOCS_SWAGGER_UI:/docs/swagger-ui}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: 'always'
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true

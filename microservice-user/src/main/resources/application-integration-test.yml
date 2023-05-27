@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    username: test
+    password: 123#test
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/test
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: false
+    properties:
+      hibernate.format_sql: false
+  flyway:
+    enabled: true
+    group: true
+    sql-migration-prefix: V
+    sql-migration-separator: __
+    sql-migration-suffixes: .sql
+    schemas: public
+    locations: classpath:db/migration

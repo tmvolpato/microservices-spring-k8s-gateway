@@ -1,0 +1,5 @@
+spring:
+  main:
+    banner-mode: off
+  hateos:
+    use-hal-as-default-json-media-type: ${ENV_MS_USER_HATEOAS_USE_HAL:false}
