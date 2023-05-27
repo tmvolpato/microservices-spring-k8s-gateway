@@ -1,27 +1,27 @@
 
 # microservices-spring-k8s-gateway
 
-##### Type: Lib
-##### Name: lib-common-exception
-##### Description: Handles all exceptions for the services it imports
+Type: Lib
+Name: lib-common-exception
+Description: Handles all exceptions for the services it imports
 
 <br/>
 
-##### Type: Service
-##### Name: Microservice-gateway
-##### Description: Service that forwards incoming requests to the approproate destination
+Type: Service
+Name: Microservice-gateway
+Description: Service that forwards incoming requests to the approproate destination
 
 <br/>
 
-##### Type: Service
-##### Name: Microservice-user
-##### Description: Service to manage users
+Type: Service
+Name: Microservice-user
+Description: Service to manage users
 
 <br/>
 
-##### Type: Service
-##### Name: Microservice-course
-##### Description: Service to manage courses
+Type: Service
+Name: Microservice-course
+Description: Service to manage courses
 
 <br/>
 
