@@ -13,7 +13,7 @@
 
 | Tecnology | Version | Site |
 |--- |--- |--- |
-| Java OpenJdk | 11      | [https://openjdk.org/](https://openjdk.org/)                                      |
+| Java Openjdk | 11      | [https://openjdk.org/](https://openjdk.org/)                                      |
 | Spring Boot  | 2.7.3   | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)  |
 | Spring Cloud | 2021.0.3| [https://spring.io/projects/spring-cloud](https://spring.io/projects/spring-cloud)|
 | Spring Cloud Kubernetes| 2.1.3|[https://spring.io/projects/spring-cloud-kubernetes](https://spring.io/projects/spring-cloud-kubernetes)|
